@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/accountTitle"
+        style="@style/MyTitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/accountId"
+        android:layout_marginTop="100dp"
+        android:text="Account" />
+
+    <EditText
+        android:id="@+id/accountId"
+        style="@style/MyEditTextStyle"
+        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/accountTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/passwordTitle" />
+
+    <TextView
+        android:id="@+id/passwordTitle"
+        style="@style/MyTitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/accountId"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Password" />
+
+    <EditText
+        android:id="@+id/password"
+        style="@style/MyEditTextStyle"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/passwordTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/error"
+        style="@style/MyTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/login"
+        style="@style/MyBtnStyle"
+        app:backgroundTint="@null"
+        android:background="@drawable/shape_button_rounded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/error"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Login" />
+
+    <Button
+        android:id="@+id/register"
+        style="@style/MyBtnStyle"
+        app:backgroundTint="@null"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/error"
+        app:layout_constraintStart_toEndOf="@+id/login"
+        android:background="@drawable/shape_button_rounded"
+        android:text="Register"/>
+
+    <TextView
+        android:id="@+id/userData"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Register"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Login</string>
+    <string name="Login">Login successful</string>
+
+    <string-array name="education_array">
+        <item>Doctor</item>
+        <item>Master</item>
+        <item>Bachelor</item>
+    </string-array>
+</resources>
