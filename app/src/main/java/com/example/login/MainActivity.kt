@@ -35,9 +35,10 @@ class MainActivity : AppCompatActivity() {
             if(validateData(account, password)) {
 
                 v.error.visibility = View.INVISIBLE
+                getData()
+                Log.d("userList", userList.toString())
 
-                if (password == sharedPreferences.getString(account, "")) {
-
+                if(userList.contains(User(account, password))) {
                     val builder: AlertDialog.Builder = AlertDialog.Builder(this)
                     builder.setTitle(R.string.Login)
                         .setPositiveButton("OK", null)
@@ -50,6 +51,21 @@ class MainActivity : AppCompatActivity() {
                         text = "Incorrect Account or Password"
                     }
                 }
+
+//                if (password == sharedPreferences.getString(account, "")) {
+//
+//                    val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+//                    builder.setTitle(R.string.Login)
+//                        .setPositiveButton("OK", null)
+//                        .show()
+//                } else {
+//
+//                    v.error.apply{
+//
+//                        visibility = View.VISIBLE
+//                        text = "Incorrect Account or Password"
+//                    }
+//                }
             } else {
                 Log.d("validateData error", "error")
             }
@@ -110,7 +126,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-    private fun getData(){
+    private fun getData() {
 
         val sharedPreferences = getSharedPreferences("user", Activity.MODE_PRIVATE)
         var i = 0
