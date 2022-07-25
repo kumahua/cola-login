@@ -61,7 +61,7 @@ class RegisterActivity: AppCompatActivity() {
 
                 error.visibility = View.INVISIBLE
 
-                saveData(account, password)
+                saveData(account, password, edu)
 
                 val builder: AlertDialog.Builder = AlertDialog.Builder(this)
                 builder.setMessage("Account: $account \n" +
@@ -117,7 +117,7 @@ class RegisterActivity: AppCompatActivity() {
         return valid
     }
 
-    private fun saveData(acc: String, pas: String) {
+    private fun saveData(acc: String, pas: String, edu: String) {
 
         val edit: SharedPreferences.Editor = sharedPreferences.edit()
 
@@ -128,6 +128,7 @@ class RegisterActivity: AppCompatActivity() {
 
         edit.putString("account-${i}", acc)
         edit.putString("password-${i}", pas)
+        edit.putString("education-${i}", edu)
         edit.apply()
     }
 }

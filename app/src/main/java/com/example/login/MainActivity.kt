@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var v: ActivityMainBinding
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var userList: ArrayList<User>
+    private var userNum = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,39 +34,24 @@ class MainActivity : AppCompatActivity() {
             val password = v.password.text.toString()
 
             if(validateData(account, password)) {
-
                 v.error.visibility = View.INVISIBLE
                 getData()
+
                 Log.d("userList", userList.toString())
 
-                if(userList.contains(User(account, password))) {
-                    val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-                    builder.setTitle(R.string.Login)
-                        .setPositiveButton("OK", null)
-                        .show()
-                } else {
+                for(i in 0..userNum) {
+                    if(sharedPreferences.getString("account-${i}", "") == account &&
+                        sharedPreferences.getString("password-${i}", "") == password) {
 
-                    v.error.apply{
+                        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+                        builder.setTitle(R.string.Login)
+                            .setPositiveButton("OK", null)
+                            .show()
 
-                        visibility = View.VISIBLE
-                        text = "Incorrect Account or Password"
+                        return@setOnClickListener
                     }
+                    Log.d("i", i.toString())
                 }
-
-//                if (password == sharedPreferences.getString(account, "")) {
-//
-//                    val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-//                    builder.setTitle(R.string.Login)
-//                        .setPositiveButton("OK", null)
-//                        .show()
-//                } else {
-//
-//                    v.error.apply{
-//
-//                        visibility = View.VISIBLE
-//                        text = "Incorrect Account or Password"
-//                    }
-//                }
             } else {
                 Log.d("validateData error", "error")
             }
@@ -134,11 +120,10 @@ class MainActivity : AppCompatActivity() {
         while (!sharedPreferences.getString("account-${i}", "").isNullOrEmpty()){
 
             val user = User(sharedPreferences.getString("account-${i}", "")!!,
-                sharedPreferences.getString("password-${i}", "")!!)
+                sharedPreferences.getString("password-${i}", "")!!, sharedPreferences.getString("education-${i}", "")!!)
             userList.add(user)
             i++
         }
-
-        Log.d("user", userList.toString())
+        userNum = i
     }
 }
